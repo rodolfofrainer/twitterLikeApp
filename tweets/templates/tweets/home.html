@@ -1,8 +1,12 @@
 {% extends 'base.html' %} {% block title %}Welcome{% endblock %} 
 {% block content %}
-<h1>Hello, world!</h1>
+<div class='row text-center'>
+  <div class='col'>
+    <h1>Hello, world!</h1>
+  </div>
+</div>
 
-<div id="tweets">Loading...</div>
+<div class='row'id="tweets">Loading...</div>
 
 <script>
   const tweetsElement = document.getElementById("tweets");
@@ -29,7 +33,7 @@
 
   function formatTweet(tweet) {
     return (
-      "<div class='mb-4 tweet' id='tweet-" +
+      "<div class='col-12 col-md-10 mx-auto border rounded py-3 mb-4 tweet' id='tweet-" +
       tweet.id +
       "'> <p>" +
       tweet.content +
