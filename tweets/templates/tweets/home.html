@@ -2,7 +2,16 @@
 {% block content %}
 <div class='row text-center'>
   <div class='col'>
-    <h1>Hello, world!</h1>
+    <h1>Welcome to tweetMe</h1>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-md-4 mx-auto col-10 mb-3'>
+    <form class='form' method='POST' action='tweets/create-tweet/'> {% csrf_token %}
+      <input type='hidden' value='/' name='next'/>
+      <textarea class='form-control' name='content' placeholder='Your tweet...'></textarea>
+      <button class='btn btn-primary btn-block mt-3' type='submit'>Tweet</button> 
   </div>
 </div>
 
