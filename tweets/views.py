@@ -5,9 +5,20 @@ import random
 
 from .models import TweetsModel
 
+from .forms import TweetsForm
+
 # Create your views here.
 def home_view(request, *args, **kwargs):
     return render(request, 'tweets/home.html', context={}, status=200)
+
+def tweet_create_view(request, *args, **kwargs):
+    form = TweetsForm(request.POST or None)
+    if form.is_valid():
+        obj=form.save(commit=False)
+        obj.save()
+        form = TweetsForm()
+    context = {'form': form}
+    return render(request, 'tweets/form.html', context=context, status=200)
 
 def tweets_list_view(request, *args, **kwargs):
     """
