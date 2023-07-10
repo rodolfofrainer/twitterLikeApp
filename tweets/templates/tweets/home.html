@@ -10,7 +10,7 @@
   <div class='col-md-4 mx-auto col-10 mb-3'>
     <form class='form' id='tweet-create-form' method='POST' action='tweets/create-tweet/'> {% csrf_token %}
       <input type='hidden' value='/' name='next'/>
-      <textarea class='form-control' name='content' placeholder='Your tweet...'></textarea>
+      <textarea required='required' class='form-control' name='content' placeholder='Your tweet...'></textarea>
       <button class='btn btn-primary btn-block mt-3' type='submit'>Tweet</button> 
   </div>
 </div>
@@ -37,6 +37,7 @@
         const newTweetElement = formatTweet(newTweetJson)
         const ogHtml = tweetsContainerElement.innerHTML;
         tweetsContainerElement.innerHTML = newTweetElement + ogHtml;
+        myForm.reset();
       }
     }
     xhr.send(myFormData);
