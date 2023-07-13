@@ -70,6 +70,7 @@
         }
       } else if(xhr.status === 401){
         alert("You must be logged in to do that")
+        window.location.href="/login"
       } else if(xhr.status === 500){
         alert("Somethins went wrong. Try again later")
       }
