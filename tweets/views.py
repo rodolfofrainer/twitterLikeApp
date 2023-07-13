@@ -19,7 +19,7 @@ def tweet_create_view(request, *args, **kwargs):
     user = request.user
     if not request.user.is_authenticated:
         user = None
-        if request.is_ajax():
+        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
             return JsonResponse({}, status=401)
         return redirect(settings.LOGIN_URL)
     is_ajax = bool(request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest')
