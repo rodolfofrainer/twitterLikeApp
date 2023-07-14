@@ -20,6 +20,8 @@ from django.urls import path, include
 from tweets.views import home_view
 
 urlpatterns = [
+    path('api-auth/', include('rest_framework.urls')),
+    
     path('admin/', admin.site.urls),
     path('', home_view, name='home'),
     path('tweets/', include('tweets.urls'))

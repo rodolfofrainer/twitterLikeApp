@@ -38,9 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
     #thid party
     'crispy_forms',
     "crispy_bootstrap4",
+    'rest_framework',
+    
     #local
     'tweets',
 ]
@@ -129,8 +132,12 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+# Project settings
+
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 LOGIN_URL = '/login'
+
+MAX_TWEET_LENGTH = 240

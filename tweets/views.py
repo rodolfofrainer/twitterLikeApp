@@ -1,9 +1,12 @@
+import random
+
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.conf import settings
 
-import random
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 from .models import TweetsModel
 from .forms import TweetsForm
@@ -15,14 +18,14 @@ ALLOWED_HOSTS = settings.ALLOWED_HOSTS
 def home_view(request, *args, **kwargs):
     return render(request, 'tweets/home.html', context={}, status=200)
 
-
+@api_view(['Post'])
 def tweet_create_view(request, *args, **kwargs):
-    data = request.POST or None
+    data = request.POST
     serializer = TweetSerializer(data=data)
-    if serializer.is_valid():
-        obj = serializer.save(user=request.user)
-        return JsonResponse(serializer.data, status=201)
-    return JsonResponse({}, status=400)
+    if serializer.is_valid(raise_exception=True):
+        serializer.save(user=request.user)
+        return Response(serializer.data, status=201)
+    return Response({}, status=400)
 
 
 def tweet_create_view_pure_django(request, *args, **kwargs):
