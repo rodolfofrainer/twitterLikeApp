@@ -5,7 +5,9 @@ from django.http import JsonResponse
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.conf import settings
 
-from rest_framework.decorators import api_view
+from rest_framework.authentication import SessionAuthentication
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from .models import TweetsModel
@@ -19,6 +21,8 @@ def home_view(request, *args, **kwargs):
     return render(request, 'tweets/home.html', context={}, status=200)
 
 @api_view(['Post'])
+# @authentication_classes([SessionAuthentication])
+@permission_classes([IsAuthenticated])
 def tweet_create_view(request, *args, **kwargs):
     data = request.POST
     serializer = TweetSerializer(data=data)
