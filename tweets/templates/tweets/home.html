@@ -154,19 +154,19 @@
   }
 
   function reTweetButton(tweet) {
-    return `<button class='btn btn-outline-success btn-sml' onclick='handleDidLike(${tweet.id}, ${tweet.likes}, "retweet")'>
+    return `<button class='btn btn-outline-success btn-sml' onclick='handleTweetActionBtn(${tweet.id}, ${tweet.likes}, "retweet")'>
               Retweet
             </button>`;
   }
 
   function unlikeButton(tweet) {
-    return `<button class='btn btn-outline-primary btn-sml' onclick='handleDidLike(${tweet.id}, ${tweet.likes}, "unlike")'>
+    return `<button class='btn btn-outline-primary btn-sml' onclick='handleTweetActionBtn(${tweet.id}, ${tweet.likes}, "unlike")'>
               Unlike
             </button>`;
   }
 
   function likeButton(tweet) {
-    return `<button class='btn btn-primary btn-sml' onclick='handleDidLike(${tweet.id}, ${tweet.likes}, "like")'>
+    return `<button class='btn btn-primary btn-sml' onclick='handleTweetActionBtn(${tweet.id}, ${tweet.likes}, "like")'>
               ${tweet.likes} Likes
             </button>`;
   }
