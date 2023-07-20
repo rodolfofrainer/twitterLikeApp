@@ -153,17 +153,18 @@
 
   }
 
-  function likeButton(tweet) {
-    return (
-      "<button class='btn btn-primary btn-sml' onclick='handleDidLike(" +
-      tweet.id +
-      ", " +
-      tweet.likes +
-      ", \"like\")'>" +
-      tweet.likes +
-      " Likes</button>"
-    );
+  function unlikeButton(tweet) {
+    return `<button class='btn btn-outline-primary btn-sml' onclick='handleDidLike(${tweet.id}, ${tweet.likes}, "unlike")'>
+              Unlike
+            </button>`;
   }
+
+  function likeButton(tweet) {
+    return `<button class='btn btn-primary btn-sml' onclick='handleDidLike(${tweet.id}, ${tweet.likes}, "like")'>
+              ${tweet.likes} Likes
+            </button>`;
+  }
+  
 
   function formatTweet(tweet) {
     return (
@@ -173,6 +174,7 @@
       tweet.content +
       "</p><div class='btn-group'>" +
       likeButton(tweet) +
+      unlikeButton(tweet) +
       "</div></div>"
     );
   }
