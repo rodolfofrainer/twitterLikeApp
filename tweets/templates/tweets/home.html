@@ -132,7 +132,7 @@
 
   loadTweets(tweetsContainerElement)
 
-  function handleDidLike(tweet_id, currentCount, action) {
+  function handleTweetActionBtn(tweet_id, currentCount, action) {
     const url = 'tweets/api/tweets/action'
     const method = 'POST'
     const data = JSON.stringify({
@@ -151,6 +151,12 @@
     }
     xhr.send(data)
 
+  }
+
+  function reTweetButton(tweet) {
+    return `<button class='btn btn-outline-success btn-sml' onclick='handleDidLike(${tweet.id}, ${tweet.likes}, "retweet")'>
+              Retweet
+            </button>`;
   }
 
   function unlikeButton(tweet) {
@@ -175,6 +181,7 @@
       "</p><div class='btn-group'>" +
       likeButton(tweet) +
       unlikeButton(tweet) +
+      reTweetButton(tweet) +
       "</div></div>"
     );
   }
