@@ -132,12 +132,12 @@
 
   loadTweets(tweetsContainerElement)
 
-  function handleDidLike(tweet_id, currentCount) {
+  function handleDidLike(tweet_id, currentCount, action) {
     const url = 'tweets/api/tweets/action'
     const method = 'POST'
     const data = JSON.stringify({
       id: tweet_id,
-      action: 'like'
+      action: action
     })
     const csrftoken = getCookie('csrftoken');
     const xhr = new XMLHttpRequest();
@@ -159,7 +159,9 @@
       tweet.id +
       ", " +
       tweet.likes +
-      ")'>"+tweet.likes+" Likes</button>"
+      ", \"like\")'>" +
+      tweet.likes +
+      " Likes</button>"
     );
   }
 
