@@ -12,7 +12,9 @@ from rest_framework.response import Response
 
 from .models import TweetsModel
 from .forms import TweetsForm
-from .serializers import TweetSerializer, TweetActionSerializer
+from .serializers import (TweetSerializer, 
+                          TweetCreateSerializer, 
+                          TweetActionSerializer)
 
 ALLOWED_HOSTS = settings.ALLOWED_HOSTS
 
@@ -25,7 +27,7 @@ def home_view(request, *args, **kwargs):
 @permission_classes([IsAuthenticated])
 def tweet_create_view(request, *args, **kwargs):
     data = request.POST
-    serializer = TweetSerializer(data=data)
+    serializer = TweetCreateSerializer(data=data)
     if serializer.is_valid(raise_exception=True):
         serializer.save(user=request.user)
         return Response(serializer.data, status=201)
