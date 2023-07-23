@@ -17,12 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from tweets.views import home_view
+from tweets.views import home_view,tweet_create_view, tweets_list_view,tweet_detail_view
 
 urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     
     path('admin/', admin.site.urls),
     path('', home_view, name='home'),
-    path('tweets/', include('tweets.urls'))
+    path('create-tweet/', tweet_create_view, name='create-tweet'),
+    path('tweets/<int:tweet_id>/', tweet_detail_view, name='tweet-delete'),
+    path('tweets/', tweets_list_view, name='tweets-list'),
+    path('api/tweets/', include('tweets.urls')),
 ]
