@@ -6,7 +6,7 @@ app_name = 'tweets'
 
 urlpatterns = [
     path('', tweets_list_view, name='tweets_list'),
-    path('action/', tweet_action_view),
+    path('action/', tweet_action_view, name="tweet_action"),
     path('create/', tweet_create_view, name='tweet_create'),
     path('<int:tweet_id>/', tweet_detail_view, name='tweet_detail'),
     path('<int:tweet_id>/delete/', tweet_delete_view, name='tweet_delete'),
