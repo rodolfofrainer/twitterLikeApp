@@ -1,5 +1,5 @@
 from rest_framework.test import APIClient
-from rest_framework.authtoken.models import Token
+
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 from django.test import TestCase
@@ -22,8 +22,7 @@ class TweetTestCase(TestCase):
 
     def get_client(self):
         client = APIClient()
-        token, _ = Token.objects.get_or_create(user=self.user)
-        client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
+        client.login(username=self.user.username, password='some_random_password')
         return client
 
     def test_tweet_list(self):
